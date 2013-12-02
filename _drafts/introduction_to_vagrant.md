@@ -93,4 +93,13 @@ end
 
 ## Provisionning des machines
 
+Vagrant est compatible avec différents outils de provisionning afin d'installer des applicatifs sur les machines que nous venons de créer :
+ - shell
+ - ansible
+ - chef
+ - puppet
+
+Utiliser le script shell fourni afin de provisionner les serveurs.
+ 
+
 
