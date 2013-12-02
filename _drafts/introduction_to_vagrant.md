@@ -68,6 +68,23 @@ end
 En se basant sur ce template, rajouter une troisième machine nommée tomcat.
 Remarque : pour se connecter spécifiquement à une des machines, vous devez utiliser la commande vagrant ssh web.
 
+## Customisation de la machine
+
+{% highlight ruby %}
+Vagrant.configure("2") do |config|
+
+  config.vm.define "web" do |web|
+    web.vm.box = "apache"
+    web.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    web.vm.customize ["modifyvm", :id, "--cpus", "1024"]
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+  end
+end
+{% endhighlight %}
+
 ## Partage de répertoire
 
 ## Configuration réseau
