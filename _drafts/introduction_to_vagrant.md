@@ -94,7 +94,7 @@ Afin de reproduire notre environnement de production, on va attribuer à nos mac
   - tomcat : 192.168.2.3
   - mysql : 192.168.2.4
 
-lien vers la documentation de vagrant  
+[lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/private_network.html)
 
 ## Redirection des port
 
