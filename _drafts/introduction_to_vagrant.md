@@ -89,6 +89,13 @@ end
 
 ## Configuration réseau
 
+Afin de reproduire notre environnement de production, on va attribuer à nos machines les mêmes adresses IP que celle de notre réseau de production. C'est à dire : 
+  - apache : 192.168.2.2
+  - tomcat : 192.168.2.3
+  - mysql : 192.168.2.4
+
+lien vers la documentation de vagrant  
+
 ## Redirection des port
 
 ## Provisionning des machines
