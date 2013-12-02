@@ -8,7 +8,7 @@ categories: xke
 
 ## Objectif du XKE
 
-L'objectif de ce XKE est de prendre en main Vagrant, un outil open source permettant de créer des environements facilement virtualisés. Il se présente comme une surchouche aux outils de virtualialisations traditionnelles. La configuration de Vagrant se base sur un dsl ruby, ce qui le rend facilement versionnable etréutilisable.
+L'objectif de ce XKE est de prendre en main Vagrant, un outil open source facilitant la création d'environnement virtualisés. Il se présente comme une surchouche aux outils de virtualialisations traditionnelles. La configuration de Vagrant se base sur un dsl ruby, ce qui le rend facilement versionnable etréutilisable.
 
 Au cours de ce Hands-on, nous allons créer un environnement iso prod, composés de trois machines :
  - un serveur de base de données
