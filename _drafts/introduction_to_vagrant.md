@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Introduction to Vagrant"
+title:  "Introduction à Vagrant"
 categories: xke
 ---
 
@@ -8,9 +8,9 @@ categories: xke
 
 ## Objectif du XKE
 
-L'objectif de ce XKE est de prendre en main Vagrant, un outil open source facilitant la création d'environnement virtualisés. Il se présente comme une surchouche aux outils de virtualialisations traditionnelles. La configuration de Vagrant se base sur un dsl ruby, ce qui le rend facilement versionnable etréutilisable.
+L'objectif de ce XKE est de prendre en main Vagrant, un outil open source facilitant la création d'environnement virtualisés. Il se présente comme une surchouche aux outils de virtualialisations traditionnels. La configuration de Vagrant se base sur un dsl écrit ruby, ce qui le rend facilement versionnable et parteageables par l'ensemble d'une équipe de développement.
 
-Au cours de ce Hands-on, nous allons créer un environnement iso prod, composés de trois machines :
+Au cours de ce Hands-on, nous allons créer un environnement virtualisé iso prod, composés de trois machines :
  - un serveur de base de données
  - un serveur d'application
  - un proxy
@@ -70,13 +70,15 @@ Remarque : pour se connecter spécifiquement à une des machines, vous devez uti
 
 ## Customisation de la machine
 
+La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fichier de configuration afin d'adapter cette machine.
+
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.box = "tomcat"
     web.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    web.vm.customize ["modifyvm", :id, "--cpus", "1024"]
+    web.vm.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
   config.vm.define "db" do |db|
@@ -98,6 +100,8 @@ Afin de reproduire notre environnement de production, on va attribuer à nos mac
 
 ## Redirection des port
 
+Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80 de la machine apache vers le port 80 de notre machine hôte. Pour vérifier que celà fonctionne, vous pourrez installer apache, et vérifier qu'en tapant localhost dans votre navigateur, vous voyez la page d'accueil d'apache.
+
 ## Provisionning des machines
 
 Vagrant est compatible avec différents outils de provisionning afin d'installer des applicatifs sur les machines que nous venons de créer :
@@ -107,6 +111,8 @@ Vagrant est compatible avec différents outils de provisionning afin d'installer
  - puppet
 
 Utiliser le script shell fourni afin de provisionner les serveurs.
- 
 
+## Refactoring
+
+## Sauvegarder votre machine
 
