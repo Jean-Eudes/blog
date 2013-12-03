@@ -89,6 +89,8 @@ end
 
 ## Partage de répertoire
 
+[lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/synced-folders/basic_usage.html)
+
 ## Configuration réseau
 
 Afin de reproduire notre environnement de production, on va attribuer à nos machines les mêmes adresses IP que celle de notre réseau de production. C'est à dire : 
