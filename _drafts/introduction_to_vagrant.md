@@ -72,6 +72,7 @@ Remarque : pour se connecter spécifiquement à une des machines, vous devez uti
 
 La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fichier de configuration afin d'adapter cette machine.
 
+<div class = 'solution'> 
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
@@ -86,6 +87,7 @@ Vagrant.configure("2") do |config|
   end
 end
 {% endhighlight %}
+</div>
 
 ## Partage de répertoire
 
@@ -94,15 +96,17 @@ end
 ## Configuration réseau
 
 Afin de reproduire notre environnement de production, on va attribuer à nos machines les mêmes adresses IP que celle de notre réseau de production. C'est à dire : 
-  - apache : 192.168.2.2
-  - tomcat : 192.168.2.3
-  - mysql : 192.168.2.4
+ - apache : 192.168.2.2
+ - tomcat : 192.168.2.3
+ - mysql : 192.168.2.4
 
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/private_network.html)
 
 ## Redirection des port
 
 Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80 de la machine apache vers le port 80 de notre machine hôte. Pour vérifier que celà fonctionne, vous pourrez installer apache, et vérifier qu'en tapant localhost dans votre navigateur, vous voyez la page d'accueil d'apache.
+
+[lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/forwarded_ports.html)
 
 ## Provisionning des machines
 

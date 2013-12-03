@@ -1,0 +1,17 @@
+.spoiler {
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+
+.teaser {
+  margin: 1px;
+  padding: 3px 10px;
+  cursor: pointer;
+  position: relative;
+  color: #ffffff;
+  border-radius: 10px;
+  background-color: #2879d0;
+  width: 40%;
+}
+
+
