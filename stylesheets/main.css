@@ -8,10 +8,10 @@
   padding: 3px 10px;
   cursor: pointer;
   position: relative;
-  color: #ffffff;
+  color: black;
   border-radius: 10px;
-  background-color: #2879d0;
-  width: 40%;
+  background-color: #F0F8FF;
+  border: 1px solid #2879d0;
 }
 
 

@@ -19,7 +19,9 @@ Au cours de ce Hands-on, nous allons créer un environnement virtualisé iso pro
 
 Pour commencer ce Hands on, vous devez au préalable installer [virtualbox](https://www.virtualbox.org/wiki/Downloads) (version 4.2 ou supérieur) et [Vagrant](http://downloads.vagrantup.com/) (version 1.2 et supérieur)
 
-## Récupération de l'image de la vm
+## Commande de base de vagrant
+
+Récupération de l'image de la vm
 
 {% highlight ruby %}
 vagrant box add precise32 http://files.vagrantup.com/precise32.box
@@ -51,6 +53,8 @@ Supprimer la machine
 vagrant destroy
 {% endhighlight %}
 
+## Personnalisation de la conf Vagrant
+
 On va maintenant supprimer le fichier crée par défaut, et le remplacer par le fichier suivant :
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
@@ -68,11 +72,33 @@ end
 En se basant sur ce template, rajouter une troisième machine nommée tomcat.
 Remarque : pour se connecter spécifiquement à une des machines, vous devez utiliser la commande vagrant ssh web.
 
+<div class = "solution">
+{% highlight ruby %}
+Vagrant.configure("2") do |config|
+
+  config.vm.define "web" do |web|
+    web.vm.box = "apache"
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.box = "tomcat"
+  end
+
+end
+{% endhighlight %}
+</div>
+
 ## Customisation de la machine
 
 La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fichier de configuration afin d'adapter cette machine.
 
-<div class = 'solution'> 
+[lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/virtualbox/configuration.html)
+
+<div class = 'solution'>
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
@@ -85,13 +111,47 @@ Vagrant.configure("2") do |config|
   config.vm.define "db" do |db|
     db.vm.box = "mysql"
   end
+
+  config.vm.define "server" do |server|
+    server.vm.box = "tomcat"
+  end
+
+
 end
 {% endhighlight %}
 </div>
 
 ## Partage de répertoire
 
+Afin de pouvoir facilement installer nos applicatifs (war, ear et autres) sur les vm, on va partager un répertoire de notre machine hôte (par exemple) Downloads, que l'on va monter sur le répertoire /tmp des vm.
+
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/synced-folders/basic_usage.html)
+
+<div class = 'solution'>
+{% highlight ruby %}
+Vagrant.configure("2") do |config|
+
+  config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
+
+  config.vm.define "web" do |web|
+    web.vm.box = "tomcat"
+    web.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    web.vm.customize ["modifyvm", :id, "--cpus", "2"]
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.box = "tomcat"
+  end
+
+
+end
+{% endhighlight %}
+</div>
+
 
 ## Configuration réseau
 
