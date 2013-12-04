@@ -97,6 +97,7 @@ end
 La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fichier de configuration afin d'adapter cette machine.
 
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/virtualbox/configuration.html)
+[lien vers la documentation de virtualbox](http://www.virtualbox.org/manual/ch08.html)
 
 <div class = 'solution'>
 {% highlight ruby %}
