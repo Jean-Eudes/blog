@@ -147,7 +147,6 @@ Vagrant.configure("2") do |config|
     server.vm.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
-
 end
 {% endhighlight %}
 </div>
@@ -186,17 +185,45 @@ Vagrant.configure("2") do |config|
     server.vm.network :private_network, ip: "192.168.2.4"
   end
 
-
 end
 {% endhighlight %}
 </div>
 
 
-## Redirection des port
+## Redirection des ports
 
 Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80 de la machine apache vers le port 80 de notre machine hôte. Pour vérifier que celà fonctionne, vous pourrez installer apache, et vérifier qu'en tapant localhost dans votre navigateur, vous voyez la page d'accueil d'apache.
 
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/forwarded_ports.html)
+
+<div class = 'solution'>
+{% highlight ruby %}
+Vagrant.configure("2") do |config|
+
+  config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
+
+  config.vm.define "web" do |web|
+    web.vm.box = "apache"
+    web.vm.network :private_network, ip: "192.168.2.2"
+    web.vm.network "forwarded_port", guest: 80, host: 80
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+    db.vm.network :private_network, ip: "192.168.2.3"
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.box = "tomcat"
+    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.network :private_network, ip: "192.168.2.4"
+  end
+
+end
+{% endhighlight %}
+</div>
+
 
 ## Provisionning des machines
 
