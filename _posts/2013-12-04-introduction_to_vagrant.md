@@ -118,8 +118,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.hostname = "tomcat"
-    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
   end
 
 
@@ -150,8 +152,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.hostname = "tomcat"
-    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
   end
 
 end
@@ -188,8 +192,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.hostname = "tomcat"
-    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
     server.vm.network :private_network, ip: "192.168.2.4"
   end
 
@@ -224,8 +230,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.hostname = "tomcat"
-    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
     server.vm.network :private_network, ip: "192.168.2.4"
   end
 
@@ -265,8 +273,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.hostname = "tomcat"
-    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.provider :virtualbox do |vb|
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
+      vb.customize ["modifyvm", :id, "--cpus", "2"]
+    end
     server.vm.network :private_network, ip: "192.168.2.4"
   end
 
