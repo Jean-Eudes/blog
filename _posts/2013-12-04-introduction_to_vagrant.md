@@ -29,27 +29,27 @@ vagrant box add precise32 http://files.vagrantup.com/precise32.box
 
 Initialisation de la configuration par défaut
 
-{% highlight ruby %}
+{% highlight bash %}
 vagrant init precise32
 {% endhighlight %}
 
 Démarrer la machine
-{% highlight ruby %}
+{% highlight bash %}
 vagrant up
 {% endhighlight %}
 
 Se connecter sur la machine
-{% highlight ruby %}
+{% highlight bash %}
 vagrant ssh
 {% endhighlight %}
 
 Eteindre la machine
-{% highlight ruby %}
+{% highlight bash %}
 vagrant halt
 {% endhighlight %}
 
 Supprimer la machine
-{% highlight ruby %}
+{% highlight bash %}
 vagrant destroy
 {% endhighlight %}
 
