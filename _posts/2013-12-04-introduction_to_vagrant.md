@@ -250,7 +250,7 @@ Vagrant est compatible avec différents outils de provisionning afin d'installer
  - chef
  - puppet
 
-Créer rapidement un script shell nommé script_install.sh pour installer un serveur apache, un mysql et un tomcat.
+Créer rapidement un script shell nommé script_install.sh pour installer un serveur apache, un mysql et un tomcat. La commande {% highlight ruby %}vagrant provision{% endhighlight %} permet de provisionner les machines.
 
 <div class = 'solution'>
 {% highlight ruby %}
