@@ -211,7 +211,7 @@ Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/forwarded_ports.html)
 
 Commande pour installer apache
-{% highlight ruby %}
+{% highlight bash %}
 apt-get install -y apache2
 {% endhighlight %}
 
