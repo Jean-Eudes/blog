@@ -27,7 +27,7 @@ Récupération de l'image de la vm
 vagrant box add precise32 http://files.vagrantup.com/precise32.box
 {% endhighlight %}
 
-Initialisation de la configuration par défaut
+Création d'un fichier de configuration par défaut
 
 {% highlight bash %}
 vagrant init precise32
@@ -53,7 +53,7 @@ Supprimer la machine
 vagrant destroy
 {% endhighlight %}
 
-## Personnalisation de la conf Vagrant
+## Personnalisation de la configuration Vagrant
 
 On va maintenant supprimer le fichier crée par défaut, et le remplacer par le fichier suivant :
 {% highlight ruby %}
@@ -70,6 +70,7 @@ end
 {% endhighlight %}
 
 En se basant sur ce template, rajouter une troisième machine nommée tomcat.
+
 Remarque : pour se connecter spécifiquement à une des machines, vous devez utiliser la commande vagrant ssh web.
 
 <div class = "solution">
