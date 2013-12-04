@@ -103,9 +103,7 @@ La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fich
 Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
-    web.vm.box = "tomcat"
-    web.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    web.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    web.vm.box = "apache"
   end
 
   config.vm.define "db" do |db|
@@ -114,6 +112,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.box = "tomcat"
+    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
 
@@ -134,9 +134,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
-    web.vm.box = "tomcat"
-    web.vm.customize ["modifyvm", :id, "--memory", "1024"]
-    web.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    web.vm.box = "apache"
   end
 
   config.vm.define "db" do |db|
@@ -145,6 +143,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "server" do |server|
     server.vm.box = "tomcat"
+    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
 
@@ -157,10 +157,40 @@ end
 
 Afin de reproduire notre environnement de production, on va attribuer à nos machines les mêmes adresses IP que celle de notre réseau de production. C'est à dire : 
  - apache : 192.168.2.2
- - tomcat : 192.168.2.3
- - mysql : 192.168.2.4
+ - mysql : 192.168.2.3
+ - tomcat : 192.168.2.4
+
 
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/private_network.html)
+
+<div class = 'solution'>
+{% highlight ruby %}
+Vagrant.configure("2") do |config|
+
+  config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
+
+  config.vm.define "web" do |web|
+    web.vm.box = "apache"
+    web.vm.network :private_network, ip: "192.168.2.2"
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+    db.vm.network :private_network, ip: "192.168.2.3"
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.box = "tomcat"
+    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.network :private_network, ip: "192.168.2.4"
+  end
+
+
+end
+{% endhighlight %}
+</div>
+
 
 ## Redirection des port
 
