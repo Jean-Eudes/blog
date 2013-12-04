@@ -206,9 +206,14 @@ end
 
 ## Redirection des ports
 
-Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80 de la machine apache vers le port 80 de notre machine hôte. Pour vérifier que celà fonctionne, vous pourrez installer apache, et vérifier qu'en tapant localhost dans votre navigateur, vous voyez la page d'accueil d'apache.
+Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80 de la machine apache vers le port 80 de notre machine hôte. Pour vérifier que celà fonctionne, vous pourrez installer apache, et vérifier qu'en tapant localhost:8080 dans votre navigateur, vous voyez la page d'accueil d'apache.
 
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/networking/forwarded_ports.html)
+
+Commande pour installer apache
+{% highlight ruby %}
+apt-get install -y apache2
+{% endhighlight %}
 
 <div class = 'solution'>
 {% highlight ruby %}
@@ -220,7 +225,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "web" do |web|
     web.vm.hostname = "apache"
     web.vm.network :private_network, ip: "192.168.2.2"
-    web.vm.network :forwarded_port, guest: 80, host: 80
+    web.vm.network :forwarded_port, guest: 80, host: 8080
   end
 
   config.vm.define "db" do |db|
@@ -263,7 +268,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "web" do |web|
     web.vm.hostname = "apache"
     web.vm.network :private_network, ip: "192.168.2.2"
-    web.vm.network :forwarded_port, guest: 80, host: 80
+    web.vm.network :forwarded_port, guest: 80, host: 8080
   end
 
   config.vm.define "db" do |db|
