@@ -273,7 +273,7 @@ end
 Il est parfois intéressant de sauvegarder une box crée à partir de virtualbox pour la réutiliser par la suite, par exemple dans le cas ou l'on installe une distribution dont la bax n'existe pas envore pour Vagrant. Essayez de créer une box à partir de la version tournant actuellement sur virtualbox.
 
 <div class = 'solution'>
-{% highlight shell %}
+{% highlight bash %}
 vagrant package --base myBox --output debian.box
 {% endhighlight %}
 </div>
