@@ -233,7 +233,37 @@ Vagrant est compatible avec différents outils de provisionning afin d'installer
  - chef
  - puppet
 
-Utiliser le script shell fourni afin de provisionner les serveurs.
+Créer rapidement un script shell nommé script_install.sh pour installer un serveur apache, un mysql et un tomcat.
+
+<div class = 'solution'>
+{% highlight ruby %}
+Vagrant.configure("2") do |config|
+
+  config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
+  config.vm.provision :shell, path: "script_install.sh"
+
+  config.vm.define "web" do |web|
+    web.vm.box = "apache"
+    web.vm.network :private_network, ip: "192.168.2.2"
+    web.vm.network :forwarded_port, guest: 80, host: 80
+  end
+
+  config.vm.define "db" do |db|
+    db.vm.box = "mysql"
+    db.vm.network :private_network, ip: "192.168.2.3"
+  end
+
+  config.vm.define "server" do |server|
+    server.vm.box = "tomcat"
+    server.vm.customize ["modifyvm", :id, "--memory", "1024"]
+    server.vm.customize ["modifyvm", :id, "--cpus", "2"]
+    server.vm.network :private_network, ip: "192.168.2.4"
+  end
+
+end
+{% endhighlight %}
+</div>
+
 
 ## Refactoring
 
