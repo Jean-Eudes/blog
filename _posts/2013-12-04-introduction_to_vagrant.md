@@ -60,11 +60,11 @@ On va maintenant supprimer le fichier crée par défaut, et le remplacer par le 
 Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
   end
 end
 {% endhighlight %}
@@ -77,15 +77,15 @@ Remarque : pour se connecter spécifiquement à une des machines, vous devez uti
 Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
   end
 
   config.vm.define "server" do |server|
-    server.vm.box = "tomcat"
+    server.vm.hostname = "tomcat"
   end
 
 end
@@ -105,15 +105,15 @@ La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fich
 Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
   end
 
   config.vm.define "server" do |server|
-    server.vm.box = "tomcat"
+    server.vm.hostname = "tomcat"
     server.vm.customize ["modifyvm", :id, "--memory", "1024"]
     server.vm.customize ["modifyvm", :id, "--cpus", "2"]
   end
@@ -136,15 +136,15 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
   end
 
   config.vm.define "server" do |server|
-    server.vm.box = "tomcat"
+    server.vm.hostname = "tomcat"
     server.vm.customize ["modifyvm", :id, "--memory", "1024"]
     server.vm.customize ["modifyvm", :id, "--cpus", "2"]
   end
@@ -171,17 +171,17 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
     web.vm.network :private_network, ip: "192.168.2.2"
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
     db.vm.network :private_network, ip: "192.168.2.3"
   end
 
   config.vm.define "server" do |server|
-    server.vm.box = "tomcat"
+    server.vm.hostname = "tomcat"
     server.vm.customize ["modifyvm", :id, "--memory", "1024"]
     server.vm.customize ["modifyvm", :id, "--cpus", "2"]
     server.vm.network :private_network, ip: "192.168.2.4"
@@ -205,18 +205,18 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
     web.vm.network :private_network, ip: "192.168.2.2"
     web.vm.network :forwarded_port, guest: 80, host: 80
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
     db.vm.network :private_network, ip: "192.168.2.3"
   end
 
   config.vm.define "server" do |server|
-    server.vm.box = "tomcat"
+    server.vm.hostname = "tomcat"
     server.vm.customize ["modifyvm", :id, "--memory", "1024"]
     server.vm.customize ["modifyvm", :id, "--cpus", "2"]
     server.vm.network :private_network, ip: "192.168.2.4"
@@ -245,18 +245,18 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "script_install.sh"
 
   config.vm.define "web" do |web|
-    web.vm.box = "apache"
+    web.vm.hostname = "apache"
     web.vm.network :private_network, ip: "192.168.2.2"
     web.vm.network :forwarded_port, guest: 80, host: 80
   end
 
   config.vm.define "db" do |db|
-    db.vm.box = "mysql"
+    db.vm.hostname = "mysql"
     db.vm.network :private_network, ip: "192.168.2.3"
   end
 
   config.vm.define "server" do |server|
-    server.vm.box = "tomcat"
+    server.vm.hostname = "tomcat"
     server.vm.customize ["modifyvm", :id, "--memory", "1024"]
     server.vm.customize ["modifyvm", :id, "--cpus", "2"]
     server.vm.network :private_network, ip: "192.168.2.4"
