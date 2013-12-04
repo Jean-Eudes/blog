@@ -76,6 +76,8 @@ Remarque : pour se connecter spécifiquement à une des machines, vous devez uti
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "precise32"
+
   config.vm.define "web" do |web|
     web.vm.hostname = "apache"
   end
@@ -103,6 +105,8 @@ La machine tomcat aura besoin de 2 cpus et de 1 Go de mémoire. Modifier le fich
 <div class = 'solution'>
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
+
+  config.vm.box = "precise32"
 
   config.vm.define "web" do |web|
     web.vm.hostname = "apache"
@@ -133,6 +137,7 @@ Afin de pouvoir facilement installer nos applicatifs (war, ear et autres) sur le
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "precise32"
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
@@ -168,6 +173,7 @@ Afin de reproduire notre environnement de production, on va attribuer à nos mac
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "precise32"
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
@@ -202,6 +208,7 @@ Afin de pouvoir accéder facilement à notre serveur, on va rediriger le port 80
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "precise32"
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
 
   config.vm.define "web" do |web|
@@ -241,6 +248,7 @@ Créer rapidement un script shell nommé script_install.sh pour installer un ser
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "precise32"
   config.vm.synced_folder "/Users/jean-eudes/Downloads", "/tmp"
   config.vm.provision :shell, path: "script_install.sh"
 
