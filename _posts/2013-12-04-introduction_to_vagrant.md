@@ -65,6 +65,8 @@ On va maintenant supprimer le fichier crée par défaut, et le remplacer par le 
 {% highlight ruby %}
 Vagrant.configure("2") do |config|
 
+  config.vm.box = "precise32"
+
   config.vm.define "web" do |web|
     web.vm.hostname = "apache"
   end
@@ -327,7 +329,7 @@ Vagrant.configure("2") do |config|
   boxes.each do |opts|
 
     config.vm.define opts[:name] do |cfg|
-      cfg.vm.box = "precise64"
+      cfg.vm.box = "precise32"
       cfg.vm.hostname = opts[:hostName]
       cfg.vm.network :private_network, ip: opts[:ip]
     end
