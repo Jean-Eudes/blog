@@ -48,6 +48,12 @@ Eteindre la machine
 vagrant halt
 {% endhighlight %}
 
+Recharger la configuration de la machine
+{% highlight bash %}
+vagrant reload
+{% endhighlight %}
+
+
 Supprimer la machine
 {% highlight bash %}
 vagrant destroy
