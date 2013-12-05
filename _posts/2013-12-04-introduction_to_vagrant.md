@@ -295,6 +295,42 @@ end
 
 ## Refactoring
 
+En vous basant sur la syntaxe suivant, réfactorer votre code afin de sépararer la configuration des machines du code Vagrant.
+
+{% highlight ruby %}
+boxes = [
+  {
+    :name => :web1,
+    :hostName => 'tomcat2',
+    :ip => '192.168.2.2'
+  },
+  {
+    :name => :web2,
+    :hostName => 'tomcat2',
+    :ip => '192.168.2.3'
+  },
+  {
+    :name => :db,
+    :hostName => 'mysql',
+    :ip => '192.168.2.4'
+  }
+]
+
+Vagrant.configure("2") do |config|
+
+  boxes.each do |opts|
+
+    config.vm.define opts[:name] do |cfg|
+      cfg.vm.box = "precise64"
+      cfg.vm.hostname = opts[:hostName]
+      cfg.vm.network :private_network, ip: opts[:ip]
+    end
+
+  end
+end
+{% endhighlight %}
+
+
 ## Packager votre machine
 
 Il est parfois intéressant de sauvegarder une box crée à partir de virtualbox pour la réutiliser par la suite, par exemple dans le cas ou l'on installe une distribution dont la bax n'existe pas envore pour Vagrant. Essayez de créer une box à partir de la version tournant actuellement sur virtualbox.
