@@ -295,7 +295,7 @@ end
 
 ## Refactoring
 
-En vous basant sur la syntaxe suivant, réfactorer votre code afin de sépararer la configuration des machines du code Vagrant.
+En vous basant sur la syntaxe suivante, réfactorer votre code afin de sépararer la configuration des machines du code Vagrant.
 
 {% highlight ruby %}
 boxes = [
