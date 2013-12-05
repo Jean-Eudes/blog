@@ -73,7 +73,7 @@ En se basant sur ce template, rajouter une troisième machine nommée tomcat.
 
 Remarque : pour se connecter spécifiquement à une des machines, vous devez utiliser la commande vagrant ssh web.
 
-Remarque 2 : Afin d'optimiser les temps de démarrage des VMs, nous allons également démarrer une seule machine à la fois, pour celà, commenter deux des trois machines dans le fichier, et travailler toujours avec la même.
+Remarque 2 : Afin d'optimiser les temps de démarrage des VMs, nous allons également démarrer une seule machine à la fois, pour celà, commenter deux des trois machines dans le fichier, et travailler toujours avec la même (# pour commenter).
 
 <div class = "solution">
 {% highlight ruby %}
