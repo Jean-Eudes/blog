@@ -10,10 +10,10 @@ Besoin de vous construire un environnement iso prod sur votre poste de travail, 
 L'objectif de ce XKE est de prendre en main Vagrant, un outil open source facilitant la création d'environnement virtualisés. Il se présente comme une surchouche aux outils de virtualialisations traditionnels. La configuration de Vagrant se base sur un dsl écrit en ruby, ce qui le rend facilement versionnable et partageable par l'ensemble des membres d'une équipe de développement.
 
 A ses débuts, Vagrant fonctionnait uniquement avec Virtualbox. Depuis la version 1.2, il supporte maintenant différents providers :
-  - Virtualbox
-  - VMWare
-  - Amazon aws
-  - Google Compute Engine
+ - Virtualbox
+ - VMWare
+ - Amazon aws
+ - Google Compute Engine
 
 Vagrant permet de configurer des machines virtuelles, que ce soit sur la quantité de mémoire, le nombre de CPU, la configuration réseau, la redirection des ports, le nombre de répertoire, ...
 
