@@ -14,4 +14,12 @@
   border: 1px solid #2879d0;
 }
 
+.title {
+  font-weight: 700;
+  font: 2.4em Georgia;
+  letter-spacing: -.05em;
+  display: block;
+  padding-bottom: 5px;
+}
+
 

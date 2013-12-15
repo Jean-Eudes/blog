@@ -1,13 +1,24 @@
 ---
 layout: default
-title: Jekyll &bull; Simple, blog-aware, static sites
+title: Simple blog d'un développeur java passionné
 overview: true
 ---
-<ul>
+<div id="content-wrapper">
+  <div class="inner clearfix">
+    <section id="main-content">
+  <div>
   {% for post in site.posts %}
-    <li>
-      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    <article>
+      <div class = "title">
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+      </div>
+      <p>
+      <time>{{ post.date | date: "%-d %B %Y" }}</time>
+      </p>
       <p>{{ post.excerpt }}</p>
-    </li>
+    </article>
   {% endfor %}
-</ul>
+  </div>
+</section>
+</div>
+</div>

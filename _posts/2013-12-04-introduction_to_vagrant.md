@@ -3,12 +3,19 @@ layout: post
 title: "Introduction à Vagrant"
 categories: xke
 ---
-
-# XKE Vagrant
+Besoin de vous construire un environnement iso prod sur votre poste de travail, de monter rapidement un cluster hadoop ou cassandra pour un poc, de partager vos machines virtuelles avec le reste de votre équipe, ce slot est pour vous. En une heure, vous apprendrez à créer un fichier de configuration Vagrant vous permettant de créer et de configurer facilement vos vm.
 
 ## Objectif du XKE
 
 L'objectif de ce XKE est de prendre en main Vagrant, un outil open source facilitant la création d'environnement virtualisés. Il se présente comme une surchouche aux outils de virtualialisations traditionnels. La configuration de Vagrant se base sur un dsl écrit en ruby, ce qui le rend facilement versionnable et partageable par l'ensemble des membres d'une équipe de développement.
+
+A ses débuts, Vagrant fonctionnait uniquement avec Virtualbox. Depuis la version 1.2, il supporte maintenant différents providers :
+  - Virtualbox
+  - VMWare
+  - Amazon aws
+  - Google Compute Engine
+
+Vagrant permet de configurer des machines virtuelles, que ce soit sur la quantité de mémoire, le nombre de CPU, la configuration réseau, la redirection des ports, le nombre de répertoire, ...
 
 Au cours de ce Hands-on, nous allons créer un environnement virtualisé iso prod, composés de trois machines :
  - un serveur de base de données
@@ -341,13 +348,11 @@ end
 
 ## Packager votre machine
 
-Il est parfois intéressant de sauvegarder une box crée à partir de virtualbox pour la réutiliser par la suite, par exemple dans le cas ou l'on installe une distribution dont la bax n'existe pas envore pour Vagrant. Essayez de créer une box à partir de la version tournant actuellement sur virtualbox.
+Il est parfois intéressant de sauvegarder une box crée à partir de virtualbox pour la réutiliser par la suite, par exemple dans le cas ou l'on installe une distribution dont il n'existe pas de box packagé pour Vagrant. Essayez de créer une box à partir de la version tournant actuellement sur virtualbox.
 
 <div class = 'solution'>
 {% highlight bash %}
 vagrant package --base myBox --output debian.box
 {% endhighlight %}
 </div>
-
-
 
