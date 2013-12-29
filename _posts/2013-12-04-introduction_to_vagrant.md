@@ -30,7 +30,7 @@ Pour commencer ce Hands on, vous devez au préalable installer [virtualbox](http
 
 Récupération de l'image de la vm
 
-{% highlight ruby %}
+{% highlight bash %}
 vagrant box add precise32 http://files.vagrantup.com/precise32.box
 {% endhighlight %}
 
