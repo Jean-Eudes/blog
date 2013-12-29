@@ -149,7 +149,7 @@ end
 
 ## Partage de répertoire
 
-Afin de pouvoir facilement installer nos applicatifs (war, ear et autres) sur les vm, on va partager un répertoire de notre machine hôte (par exemple) Downloads, que l'on va monter sur le répertoire /tmp des vm.
+Afin de pouvoir facilement installer nos applicatifs (war, ear et autres) sur les machines virtuelles, on va partager un répertoire de notre machine hôte (par exemple) Downloads, que l'on va monter sur le répertoire /tmp des vm.
 
 [lien vers la documentation de vagrant](http://docs.vagrantup.com/v2/synced-folders/basic_usage.html)
 
