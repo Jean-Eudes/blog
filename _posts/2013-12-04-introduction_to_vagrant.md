@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction à Vagrant"
-categories: xke
+categories: [xke]
 ---
 Besoin de vous construire un environnement iso prod sur votre poste de travail, de monter rapidement un cluster hadoop ou cassandra pour un poc, de partager vos machines virtuelles avec le reste de votre équipe, ce slot est pour vous. En une heure, vous apprendrez à créer un fichier de configuration Vagrant vous permettant de créer et de configurer facilement vos vm.
 
