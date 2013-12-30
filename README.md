@@ -2,6 +2,7 @@ blog
 ====
 
 simple repo to store XKE and tech event
-jekyll en local :
+
+launch jekyll on local:
 
     jekyll serve --drafts
