@@ -25,6 +25,7 @@ Pour commencer, nous allons commencer par créer un fichier contenant nos clefs 
 Maintenant que nous avons renseigner nos clefs *secrètes* amazon, nous allons pouvoir créer notre première machine. Toujours en vous basant sur la documentation, créer un fichier serveur.tf contenant la déclararation de votre première machine. Nous allons utiliser une machine ayant comme ami : *ami-6e7bd919*, et comme type d'instance : *t2.micro*. Comme la région *eu-west-1* ne possède pas de vpc par défaut, vous allez devoir rajouter l'attribut *subnet_id = "subnet-1f9f7946"*.
 
 Une fois le fichier créer, vous pouvez simplement demander à terraform de créer votre infrastructure en lançant la commande :
+
 {% highlight bash %}
 terraform apply
 {% endhighlight %} 
