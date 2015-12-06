@@ -71,7 +71,7 @@ Avec consul, la création d’un service passe par la création d’un fichier j
 {% highlight javascript %}
 {"service":
    {
-      "name": "web1",
+      "name": "web",
       "tags": ["web"], "port": 8000}
 }
 {% endhighlight %}
@@ -93,6 +93,7 @@ Consul met à disposition deux interfaces pour avoir accès aux informations d�
 Essayer de récupérer les informations de votre service avec les deux interfaces disponibles.
 
 [lien vers la documentation de l'api REST](https://www.consul.io/docs/agent/http/catalog.html)
+
 [lien vers la documentation de l'interface DNS](https://www.consul.io/docs/agent/dns.html)
 
 
@@ -124,7 +125,7 @@ Penser à recharger la configuration.
 <div class = 'solution'>
 {% highlight javascript %}
 {"service":
-    {"name": "web1",
+    {"name": "web",
      "tags": ["web"],
      "port": 8000,
      "check": {
@@ -187,7 +188,9 @@ A l’aide de l’API http, renseigner les trois clefs suivantes avec leurs vale
 
 {% highlight text %}
 service/haproxy/maxconn : 256
-service/haproxy/timeouts : 5000ms
+service/haproxy/timeouts/connect : 5000ms
+service/haproxy/timeouts/client : 50000ms
+service/haproxy/timeouts/server : 50000ms
 service/haproxy/mode : http
 {% endhighlight %}
 
@@ -206,7 +209,7 @@ curl -X PUT -d 'http' http://localhost:8500/v1/kv/service/haproxy/mode
 Il peut parfois être nécessaire de mettre à jour dynamiquement la configuration d'un fichier en fonction de la création d'un nouveau service ou d'une mise à jour d'un dictionnaire.
 Dans l'exemple suivant, on va demander à consul de nous générer une configuration haproxy qui se mettra automatiquement à jour lorsque l'on rajoutera un nouveau serveur web.
 
-Pour commencer, dans notre serveur consul, dans son répertoire (etc/consul.d), déclarer un service nommé web2 avec également un tag web.
+Pour commencer, dans notre serveur consul, dans son répertoire (etc/consul.d), déclarer un service nommé web avec également un tag web.
 
 Penser à rechager la configuration.
 
@@ -220,20 +223,58 @@ mv consul-template bin
 rm consul_template_0.11.0_linux_amd64.zip
 {% endhighlight %}
 
-Les fichiers template géré par consul se base sur la syntaxe [hcl](https://github.com/hashicorp/hcl). En vous basant
+Les fichiers template géré par consul se base sur la syntaxe [hcl](https://github.com/hashicorp/hcl). En vous basant sur l'exemple suivant,
+créer un fichier template (haproxy.tmpl) qui génère une configuration haproxy renvoyant les requêtes sur un serveur au hasard.
+
+Pour celà, baser vous sur le tag web que nous avons défini dans nos services
+
+Example :
+
+{% highlight text %}
+    global
+        daemon
+        maxconn 256
+
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
+
+    listen http-in
+        bind *:8000
+        server web 127.0.0.1:8000
+        server web 127.0.0.1:8000
+{% endhighlight %}
+
+
+Pour lancer consul-template, on utilise la commande ci-dessous.
+
+{% highlight bash %}
+consul-template   -consul localhost:8500   -template haproxy.tmpl:haproxy.conf &
+{% endhighlight %}
+
+[lien vers la documentation de consul-template](https://github.com/hashicorp/consul-template)
+
 
 <div class = 'solution'>
-{% highlight bash %}
-global
-    daemon
-    maxconn {{key "service/haproxy/maxconn"}}
+{% highlight ruby %}
+    global
+        daemon
+        maxconn 256
 
-defaults
-    mode {{key "service/haproxy/mode"}}{{range ls "service/haproxy/timeouts"}}
-    timeout {{.Key}} {{.Value}}{{end}}
+    defaults
+        mode http
+        timeout connect 5000ms
+        timeout client 50000ms
+        timeout server 50000ms
 
-listen http-in
-    bind *:8000{{range service "web"}}
-    server {{.Node}} {{.Address}}:{{.Port}}{{end}}
+    listen http-in
+        bind *:8000 {{ "{{ range service 'web' "}} }}
+        server {{ "{{ .Node "}} }} {{ "{{.Address "}} }} : {{ "{{ .Port "}} }} {{ "{{ end "}} }}
 {% endhighlight %}
 </div>
+
+
+Pour finir, on va utiliser les données des dictionnaires défini précedement pour finaliser notre template.
+Passer à tuer et à redémarrer consul-template pour prendre en compte la nouvelle configuration.
