@@ -35,6 +35,7 @@ wget https://dl.bintray.com/mitchellh/consul/0.5.2_web_ui.zip
 Nous allons maintenant lancer notre serveur consul, en spécifiant que nous ne lançons que une instance (pas de redondance), et qu’il sera accessible depuis l’extérieur.
 
 {% highlight bash %}
+mkdir -p etc/consul.d
 consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul --client 0.0.0.0 -ui-dir ui -config-dir etc/consul.d &
 {% endhighlight %}
 
@@ -50,6 +51,7 @@ consul members
 On va maintenant ajouter un agent consul et le connecter à notre serveur. Sur votre seconde machine, Lancer l'agent avec les commandes suivantes
 
 {% highlight bash %}
+mkdir -p etc/consul.d
 consul agent -data-dir /tmp/consul -node=agent1 -config-dir etc/consul.d &
 consul join <addr ip privé>
 {% endhighlight %}
@@ -199,7 +201,7 @@ service/haproxy/timeouts/server : 50000ms
 service/haproxy/mode : http
 {% endhighlight %}
 
-[lien vers la documentation du health check](https://www.consul.io/intro/getting-started/kv.html)
+[lien vers la documentation de la base de donnée](https://www.consul.io/intro/getting-started/kv.html)
 
 <div class = 'solution'>
 {% highlight bash %}
