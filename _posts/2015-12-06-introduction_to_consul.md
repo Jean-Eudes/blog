@@ -280,6 +280,8 @@ consul-template   -consul localhost:8500   -template haproxy.tmpl:haproxy.conf &
 {% endhighlight %}
 </div>
 
+Eteigner un de vos serveur python, et regarder le fichier haproxy.conf se mettre à jour.
+
 
 Pour finir, on va utiliser les données des dictionnaires défini précedement pour finaliser notre template.
 Passer à tuer et à redémarrer consul-template pour prendre en compte la nouvelle configuration.
