@@ -10,6 +10,11 @@ Consul est un outil de service discovery, permettant à des services de s'enregi
 
 Il y a quelques mois, votre entreprise a suivie le dernier buzz word à la mode suite à une université à devoxx france, et à décider de se lancer dans l’aventure des micro services. De très nombreux micro services plus tard, un problème est apparu : comment connaître l’adresse de mes services. Après consultation du pôle architecture de notre société, suivi par de trop nombreuses réunions, il a été décidé de mettre en place une solution de service discovery.
 
+## Etape pour le XKE de décembre
+
+[lien vers la clef privé](../data/consulkey.pem)
+
+
 ## Installation de consul (étape déjà faite pour le XKE de décembre)
 
 Consul est livré sous la forme d’un simple binaire. Il suffit simplement de le télécharger :
