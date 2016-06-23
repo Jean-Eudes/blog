@@ -277,7 +277,7 @@ consul-template   -consul localhost:8500   -template haproxy.tmpl:haproxy.conf &
         timeout server 50000ms
 
     listen http-in
-        bind *:8000 {{ "{{ range service ""web"" "}} }}
+        bind *:8000 {{ "{{ range service """web""" "}} }}
         server {{ "{{ .Node "}} }} {{ "{{.Address "}} }} : {{ "{{ .Port "}} }} {{ "{{ end "}} }}
 {% endhighlight %}
 </div>
